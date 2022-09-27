@@ -18,6 +18,12 @@ Food::Food() {
 	m_loc.second = uid_y(rd);
 }
 
+Food::Food(COORD loc) {
+	m_loc = loc;
+	food_id++;
+}
+
+
 Food::~Food() {
 //	std::cout << "Food destructed" << std::endl;
 }

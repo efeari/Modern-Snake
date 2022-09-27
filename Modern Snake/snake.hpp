@@ -19,16 +19,14 @@ public:
 	~Snake();
 	int get_length() const;
 	std::vector<COORD> get_body() const;
-	void grow(const COORD& fruit_loc);
-	void move(std::vector<Food>* food_vec);
+	void grow(Food& food);
+	bool move(std::vector<Food>* food_vec);
 	void set_head(const COORD* new_head);
 	void move_right();
 	void move_left();
 	void move_up();
 	void move_down();
 	void change_last_move(const Moves move);
-	void eat_food(Food* food);
-	
 	
 private:
 	int m_length = 1;

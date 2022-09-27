@@ -13,7 +13,7 @@ Screen::Screen() {
 	noecho();
 	cbreak();
 	curs_set(0);
-	timeout(200);
+	timeout(250);
 	win = newwin(24, 80, 0, 0);
 	refresh();
 	box(this->win, 0, 0);
@@ -44,4 +44,9 @@ void Screen::refresh_screen(const std::vector<Food>& food_vec) {
 
 void Screen::print_food(const Food& food) {
 	mvwprintw(this->win, food.get_location().second, food.get_location().first, "x");
+}
+
+void Screen::close_screen() {
+	wrefresh(this->win);
+	delwin(this->win);
 }

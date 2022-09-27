@@ -24,6 +24,7 @@ public:
 	void print_snake(const Snake* snake);
 	void refresh_screen(const std::vector<Food>& food_vec);
 	void print_food(const Food& food);
+	void close_screen();
 private:
 	WINDOW* win;
 };

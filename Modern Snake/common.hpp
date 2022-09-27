@@ -23,6 +23,4 @@ typedef enum : int {
 	Still = 4,
 } Moves;
 
-
-
 #endif /* common_h */

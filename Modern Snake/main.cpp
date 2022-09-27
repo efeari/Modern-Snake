@@ -14,10 +14,13 @@ int main() {
 			food_vec.push_back(Food());
 		}
 		screen.clear_screen();
-		snake->move(&food_vec);
+		if (!snake->move(&food_vec)) {
+			break;
+		}
 		screen.print_snake(snake.get());
 		screen.refresh_screen(food_vec);
 	}
-	endwin();
+	screen.clear_screen();
+	screen.close_screen();
 	return 0;
 }

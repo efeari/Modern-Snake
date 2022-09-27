@@ -16,6 +16,7 @@ class Food
 {
 public:
 	Food();
+	Food(COORD loc);
 	~Food();
 	COORD get_location() const;
 	static int food_id;

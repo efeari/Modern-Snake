@@ -24,7 +24,24 @@ int Snake::get_length() const{
 	return this->m_length;
 }
 
-void Snake::grow(const COORD& fruit_loc) {
+void Snake::grow(Food& food) {
+	auto fruit_loc = food.get_location();
+	switch (this->last_move) {
+		case Right:
+			fruit_loc.first++;
+			break;
+		case Left:
+			fruit_loc.first--;
+			break;
+		case Up:
+			fruit_loc.second--;
+			break;
+		case Down:
+			fruit_loc.second++;
+			break;
+		default:
+			break;
+	}
 	this->body.push_back(fruit_loc);
 }
 
@@ -56,7 +73,7 @@ void Snake::move_left() {
 	this->set_head(tmp_coord.get());
 }
 
-void Snake::move(std::vector<Food>* food_vec) {
+bool Snake::move(std::vector<Food>* food_vec) {
 	int ch = getch();
 	switch(ch) {
 		case KEY_LEFT:
@@ -95,24 +112,22 @@ void Snake::move(std::vector<Food>* food_vec) {
 		default:
 			break;
 	}
-	
-	for (auto&& [first,second] : body) {
-		for (auto& food : *food_vec) {
-			if (first == food.get_location().first && second == food.get_location().second) {
-				food.get_location();
-				this->eat_food(&food);
-				food_vec->erase(std::find(food_vec->begin(), food_vec->end(), food));
-			}
+	for (auto it = std::begin(body); it != std::end(body) - 1; ++it) {
+		auto pair = *it;
+		if (pair.first == body.back().first && pair.second == body.back().second) {
+			return false;
 		}
 	}
+	auto head = body.back();
+	for (auto& food : *food_vec) {
+		if (head.first == food.get_location().first && head.second == food.get_location().second) {
+			this->grow(food);
+			food_vec->erase(std::find(food_vec->begin(), food_vec->end(), food));
+		}
+	}
+	return true;
 }
 
 void Snake::change_last_move(const Moves move) {
 	this->last_move = move;
 }
-
-void Snake::eat_food(Food* food) {
-	this->grow(food->get_location());
-}
-
-
