@@ -10,9 +10,8 @@
 
 #include <random>
 
-//extern std::random_device rd;
-//extern std::mt19937 gen(rd());
-extern std::mt19937 rng;
+static std::random_device rd;
+static std::mt19937 rng{rd()};
 
 typedef std::pair<int, int> COORD;
 

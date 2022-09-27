@@ -13,7 +13,7 @@ Screen::Screen() {
 	noecho();
 	cbreak();
 	curs_set(0);
-	timeout(500);
+	timeout(200);
 	win = newwin(24, 80, 0, 0);
 	refresh();
 	box(this->win, 0, 0);

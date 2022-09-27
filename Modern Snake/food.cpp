@@ -8,20 +8,18 @@
 #include "food.hpp"
 #include <iostream>
 
-std::mt19937 rng;
-
 int Food::food_id = 0;
 
 Food::Food() {
-	std::cout << "Food constructed" << std::endl;
+	static std::uniform_int_distribution<int> uid_x(1,78);
+	static std::uniform_int_distribution<int> uid_y(1,22);
 	food_id++;
-	std::uniform_int_distribution<int> distr(2, 28);
-	m_loc.first = distr(rng);
-	m_loc.second = distr(rng);
+	m_loc.first = uid_x(rd);
+	m_loc.second = uid_y(rd);
 }
 
 Food::~Food() {
-	std::cout << "Food destructed" << std::endl;
+//	std::cout << "Food destructed" << std::endl;
 }
 
 COORD Food::get_location() const {

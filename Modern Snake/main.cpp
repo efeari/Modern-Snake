@@ -8,9 +8,11 @@ int main() {
 	Screen screen;
 	auto snake = std::make_unique<Snake>(COORD {24,17});
 	std::vector<Food> food_vec;
-	Food food;
-	food_vec.push_back(food);
+	food_vec.push_back(Food());
 	while (1) {
+		if (food_vec.empty()) {
+			food_vec.push_back(Food());
+		}
 		screen.clear_screen();
 		snake->move(&food_vec);
 		screen.print_snake(snake.get());
