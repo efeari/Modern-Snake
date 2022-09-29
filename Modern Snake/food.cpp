@@ -8,19 +8,19 @@
 #include "food.hpp"
 #include <iostream>
 
-int Food::food_id = 0;
+int Food::static_food_id = 0;
 
 Food::Food() {
-	static std::uniform_int_distribution<int> uid_x(1,78);
-	static std::uniform_int_distribution<int> uid_y(1,22);
-	food_id++;
+	static std::uniform_int_distribution<int> uid_x(1,field_width - 2);
+	static std::uniform_int_distribution<int> uid_y(1,field_heigth - 2);
+	this->food_id = food_id++;
 	m_loc.first = uid_x(rd);
 	m_loc.second = uid_y(rd);
 }
 
 Food::Food(COORD loc) {
 	m_loc = loc;
-	food_id++;
+	this->food_id = food_id++;
 }
 
 

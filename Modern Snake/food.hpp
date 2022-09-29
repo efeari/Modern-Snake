@@ -19,7 +19,8 @@ public:
 	Food(COORD loc);
 	~Food();
 	COORD get_location() const;
-	static int food_id;
+	static int static_food_id;
+	int food_id;
 	bool operator==(const Food& rhs);
 private:
 	COORD m_loc;

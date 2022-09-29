@@ -15,7 +15,8 @@
 class Snake
 {
 public:
-	Snake(COORD start_coord);
+	Snake();
+	Snake(COORD start_coord, Moves move);
 	~Snake();
 	int get_length() const;
 	std::vector<COORD> get_body() const;
@@ -27,11 +28,16 @@ public:
 	void move_up();
 	void move_down();
 	void change_last_move(const Moves move);
+	int get_score() const;
+	void set_speed(int new_speed);
+	int get_speed() const;
 	
 private:
 	int m_length = 1;
 	std::vector<COORD> body; // Has to be reversed for efficiency. Head = last item, tail = first item.
 	Moves last_move = Up;
+	int score = 0;
+	int speed = 200;
 };
 
 #endif /* snake_hpp */

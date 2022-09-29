@@ -7,10 +7,19 @@
 
 #include "snake.hpp"
 
-Snake::Snake(COORD start_coord) {
+Snake::Snake() {
+	COORD start_coord;
+	static std::uniform_int_distribution<int> uid_x(1,field_width - 2);
+	static std::uniform_int_distribution<int> uid_y(1,field_heigth - 2);
+	start_coord.first = uid_x(rd);
+	start_coord.second = uid_y(rd);
 	this->body.push_back(start_coord);
-	start_coord.second++;
+	static std::uniform_int_distribution<int> uid(0,3);
+	this->last_move = Moves(uid(rd));
+}
+Snake::Snake(COORD start_coord, Moves move) {
 	this->body.push_back(start_coord);
+	this->last_move = move;
 }
 
 Snake::~Snake() {
@@ -43,6 +52,8 @@ void Snake::grow(Food& food) {
 			break;
 	}
 	this->body.push_back(fruit_loc);
+	this->score++;
+	this->set_speed(this->get_speed() - 5);
 }
 
 void Snake::set_head(const COORD* new_head) {
@@ -73,8 +84,34 @@ void Snake::move_left() {
 	this->set_head(tmp_coord.get());
 }
 
+void check_limits(COORD* loc) {
+	if (loc->first < 1) {
+		loc->first = field_width - 1;
+	}
+	else if (loc->first >= field_width - 1) {
+		loc->first = 1;
+	}
+	if (loc->second < 1) {
+		loc->second = field_heigth - 1;
+	}
+	else if (loc->second >= field_heigth - 1) {
+		loc->second = 1;
+	}
+	
+}
+
+void Snake::set_speed(int new_speed) {
+	if (new_speed > 1)
+		this->speed = new_speed;
+}
+
+int Snake::get_speed() const {
+	return this->speed;
+}
+
 bool Snake::move(std::vector<Food>* food_vec) {
 	int ch = getch();
+	flushinp();
 	switch(ch) {
 		case KEY_LEFT:
 			if (this->last_move != Right)
@@ -95,6 +132,7 @@ bool Snake::move(std::vector<Food>* food_vec) {
 		default:
 			break;
 	}
+	
 	std::shift_left(this->body.begin(), this->body.end(), 1);
 	switch (this->last_move) {
 		case Right:
@@ -112,11 +150,14 @@ bool Snake::move(std::vector<Food>* food_vec) {
 		default:
 			break;
 	}
+	
+	check_limits(&body.back());
 	for (auto it = std::begin(body); it != std::end(body) - 1; ++it) {
 		auto pair = *it;
 		if (pair.first == body.back().first && pair.second == body.back().second) {
 			return false;
 		}
+		check_limits(&pair);
 	}
 	auto head = body.back();
 	for (auto& food : *food_vec) {
@@ -130,4 +171,8 @@ bool Snake::move(std::vector<Food>* food_vec) {
 
 void Snake::change_last_move(const Moves move) {
 	this->last_move = move;
+}
+
+int Snake::get_score() const{
+	return this->score;
 }

@@ -12,6 +12,7 @@
 #include <ncurses.h>
 #include "snake.hpp"
 #include <vector>
+#include "common.hpp"
 
 class Food;
 class Snake;
@@ -21,12 +22,37 @@ public:
 	Screen();
 	~Screen();
 	void clear_screen();
-	void print_snake(const Snake* snake);
-	void refresh_screen(const std::vector<Food>& food_vec);
-	void print_food(const Food& food);
 	void close_screen();
+	int menu_selection();
+	void clear_all();
+	
+private:
+	WINDOW* win;
+	void draw_menu(int item);
+	
+};
+
+class ScoreScreen: public Screen
+{
+public:
+	ScoreScreen();
+	~ScoreScreen();
+	void refresh_screen(const Snake* snake);
+	
 private:
 	WINDOW* win;
 };
 
+class GameScreen: public Screen
+{
+public:
+	GameScreen();
+	~GameScreen();
+	void print_snake(const Snake* snake);
+	void refresh_screen(const Snake* snake, const std::vector<Food>& food_vec);
+	void print_food(const Food& food);
+	
+private:
+	WINDOW* win;
+};
 #endif /* screen_hpp */
