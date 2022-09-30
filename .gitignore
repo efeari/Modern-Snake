@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/xcode,c++
 # Edit at https://www.toptal.com/developers/gitignore?templates=xcode,c++
 
+*.txt
+*.DS_Store
+
 ### C++ ###
 # Prerequisites
 *.d
