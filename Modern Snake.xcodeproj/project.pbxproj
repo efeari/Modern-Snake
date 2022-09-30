@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3AA4AB8128E201B400F95B6D /* screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4AB7F28E201B400F95B6D /* screen.cpp */; };
+		3AA4AB8528E6E04E00F95B6D /* whereami.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA4AB8428E6E04E00F95B6D /* whereami.c */; };
 		3AD3A20728E1ECEA000E9894 /* libncurses.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD3A20628E1ECEA000E9894 /* libncurses.tbd */; };
 		3AD3A20928E1F4D0000E9894 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD3A20828E1F4D0000E9894 /* SDL2.framework */; };
 		3AEF867328DF4219003D48B6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AEF867228DF4219003D48B6 /* main.cpp */; };
@@ -30,6 +31,8 @@
 /* Begin PBXFileReference section */
 		3AA4AB7F28E201B400F95B6D /* screen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = screen.cpp; sourceTree = "<group>"; };
 		3AA4AB8028E201B400F95B6D /* screen.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = screen.hpp; sourceTree = "<group>"; };
+		3AA4AB8328E6E04E00F95B6D /* whereami.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = whereami.h; sourceTree = "<group>"; };
+		3AA4AB8428E6E04E00F95B6D /* whereami.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = whereami.c; sourceTree = "<group>"; };
 		3AD3A20628E1ECEA000E9894 /* libncurses.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libncurses.tbd; path = usr/lib/libncurses.tbd; sourceTree = SDKROOT; };
 		3AD3A20828E1F4D0000E9894 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		3AEF866F28DF4219003D48B6 /* Modern Snake */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Modern Snake"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +94,8 @@
 				3AEF867228DF4219003D48B6 /* main.cpp */,
 				3AA4AB7F28E201B400F95B6D /* screen.cpp */,
 				3AA4AB8028E201B400F95B6D /* screen.hpp */,
+				3AA4AB8328E6E04E00F95B6D /* whereami.h */,
+				3AA4AB8428E6E04E00F95B6D /* whereami.c */,
 			);
 			path = "Modern Snake";
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 				3AEF867F28DF4238003D48B6 /* snake.cpp in Sources */,
 				3AEF867E28DF4238003D48B6 /* food.cpp in Sources */,
 				3AA4AB8128E201B400F95B6D /* screen.cpp in Sources */,
+				3AA4AB8528E6E04E00F95B6D /* whereami.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

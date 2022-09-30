@@ -38,18 +38,17 @@ void Screen::clear_all() {
 void Screen::draw_menu(int item) {
 	int c;
 	const char mainmenu[] = "Main Menu";
-	char menu[MAX_MENU] [5] = {
-		"Play",
-		"Exit"
+	std::array<std::string,3> menu = { "Play",
+		"Exit",
+		"Credits"
 	};
-
 	clear();
 	mvaddstr(0, 31, mainmenu);
 	for( c = 0; c < MAX_MENU; c++)
 	{
 		if( c == item)
 			attron(A_REVERSE);
-		mvaddstr(3 + (c * 2), 20, menu[c]);
+		mvaddstr(3 + (c * 2), 20, menu[c].c_str());
 		attroff(A_REVERSE);
 	}
 	mvaddstr(17, 20, "Use arrow keys to move; Enter to select:");
@@ -79,6 +78,7 @@ int Screen::menu_selection() {
 		this->draw_menu(menuitem);
 	} while(key != '\n');
 	clear();
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	return menuitem;
 }
 

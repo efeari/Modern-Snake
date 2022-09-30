@@ -13,6 +13,7 @@
 #include "snake.hpp"
 #include <vector>
 #include "common.hpp"
+#include <array>
 
 class Food;
 class Snake;

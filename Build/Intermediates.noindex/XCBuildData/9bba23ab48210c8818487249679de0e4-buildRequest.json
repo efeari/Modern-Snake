@@ -1,0 +1,57 @@
+{
+  "_buildCommand2" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildOnly"
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "7270bd6210ef3da15d5ea32c90b7f8481822590469a1f4fa59e30e3656ac7f2f"
+    }
+  ],
+  "containerPath" : "/Users/efearikan/Documents/Xcode/Modern Snake/Modern Snake.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx12.3",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64h",
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/efearikan/Documents/Xcode/Modern Snake/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/efearikan/Documents/Xcode/Modern Snake/Build/Products",
+      "derivedDataPath" : "/Users/efearikan/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/efearikan/Library/Developer/Xcode/DerivedData/Modern_Snake-fbgsxrnedybjauciptqimvyxnwks/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/efearikan/Library/Developer/Xcode/DerivedData/Modern_Snake-fbgsxrnedybjauciptqimvyxnwks/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/efearikan/Documents/Xcode/Modern Snake/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
