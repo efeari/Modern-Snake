@@ -35,7 +35,7 @@ void Screen::clear_all() {
 	refresh();
 }
 
-void Screen::draw_menu(int item) {
+void Screen::draw_menu(int item, const std::set<int, std::greater<int>>& highScores) {
 	int c;
 	const char mainmenu[] = "Main Menu";
 	std::array<std::string,3> menu = { "Play",
@@ -44,38 +44,45 @@ void Screen::draw_menu(int item) {
 	};
 	clear();
 	mvaddstr(0, 31, mainmenu);
-	for( c = 0; c < MAX_MENU; c++)
-	{
+	for( c = 0; c < MAX_MENU; c++) {
 		if( c == item)
 			attron(A_REVERSE);
 		mvaddstr(3 + (c * 2), 20, menu[c].c_str());
 		attroff(A_REVERSE);
 	}
+	
+	mvaddstr(3, 35, "Leaderboard:");
+	
+	int i = 1;
+	for (const auto& score : highScores) {
+		if (i > 3)
+			break;
+		mvaddstr((3 + i++), 40, std::to_string(score).c_str());
+	}
 	mvaddstr(17, 20, "Use arrow keys to move; Enter to select:");
 	refresh();
 }
 
-int Screen::menu_selection() {
-	draw_menu(0);
+int Screen::menu_selection(const std::set<int, std::greater<int>>& highScores) {
+	draw_menu(0, highScores);
 	int key;
 	int menuitem = 0;
-	do
-	{
+	do {
 		key = getch();
 		switch(key)
 		{
-				case KEY_DOWN:
-					menuitem++;
-					if(menuitem > MAX_MENU - 1) menuitem = 0;
-					break;
-				case KEY_UP:
-					menuitem--;
-					if(menuitem < 0) menuitem = MAX_MENU - 1;
-					break;
-				default:
-					break;
+			case KEY_DOWN:
+				menuitem++;
+				if(menuitem > MAX_MENU - 1) menuitem = 0;
+				break;
+			case KEY_UP:
+				menuitem--;
+				if(menuitem < 0) menuitem = MAX_MENU - 1;
+				break;
+			default:
+				break;
 		}
-		this->draw_menu(menuitem);
+		this->draw_menu(menuitem, highScores);
 	} while(key != '\n');
 	clear();
 	std::this_thread::sleep_for(std::chrono::milliseconds(500));

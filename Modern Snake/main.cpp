@@ -5,26 +5,29 @@
 #include "food.hpp"
 #include "snake.hpp"
 #include "screen.hpp"
-#include "whereami.h"
+#include <set>
+#include <functional>
 
 int play_game();
-void save_score(std::vector<int> scores);
+bool save_score(int score);
+bool get_scores(std::set<int, std::greater<int>>* highScores);
 
 int main() {
 	Screen main_screen;
 	bool continue_game = true;
-	while(continue_game)
-	switch (main_screen.menu_selection()) {
-		case 0: {
-			std::vector<int> tmp;
-			tmp.push_back(play_game());
-			save_score(tmp);
-			break;
-		}
-		case 1: {
-			main_screen.clear_all();
-			continue_game = 0;
-			break;
+	std::set<int, std::greater<int>> highScores;
+	while(continue_game) {
+		get_scores(&highScores);
+		switch (main_screen.menu_selection(highScores)) {
+			case 0: {
+				save_score(play_game());
+				break;
+			}
+			case 1: {
+				main_screen.clear_all();
+				continue_game = 0;
+				break;
+			}
 		}
 	}
 	return 0;
@@ -56,44 +59,27 @@ int play_game() {
 	}
 }
 
-void save_score(std::vector<int> scores) {
-	char *path = NULL;
-	int length, dirname_length;
-	length = wai_getExecutablePath(NULL, 0, NULL);
-	path = (char*)malloc(length + 1);
-	wai_getExecutablePath(path, length, &dirname_length);
+bool save_score(int score) {
 	std::ofstream outf;
-	outf.open(std::string(path) + std::string("_Scores.txt"), std::ofstream::out | std::ofstream::app);
+	outf.open(("Modern Snake Scores.txt"), std::ofstream::out | std::ofstream::app);
 	if (!outf) {
-		std::cerr << "Error writing\n";
+		return false;
 	}
-	for (const auto &_s : scores) {
-		outf << _s << "\n";
-	}
-	outf.close();
-	free(path);
+	else
+		outf << score << "\n";
+	return true;
 }
 
-void get_scores() {
-	char *path = NULL;
-	int length, dirname_length;
-	length = wai_getExecutablePath(NULL, 0, NULL);
-	path = (char*)malloc(length + 1);
-	wai_getExecutablePath(path, length, &dirname_length);
+bool get_scores(std::set<int, std::greater<int>>* highScores) {
 	std::ifstream inf;
-	inf.open(std::string(path) + std::string("_Scores.txt"), std::ifstream::in | std::ofstream::app);
+	inf.open(("Modern Snake Scores.txt"), std::ifstream::in);
 	if (!inf) {
-		std::cerr << "Error reading\n";
+		return false;
 	}
-	std::vector<int> scores;
-	while (inf) {
-		int _score;
-		inf >> _score;
-		scores.push_back(_score);
+	int tmp;
+	while (inf >> tmp) {
+		highScores->insert(tmp);
 	}
-	std::sort(scores.begin(), scores.end());
 	inf.close();
-	std::filesystem::remove(std::string(path) + std::string("_Scores.txt"));
-	save_score(scores);
-	free(path);
+	return true;
 }

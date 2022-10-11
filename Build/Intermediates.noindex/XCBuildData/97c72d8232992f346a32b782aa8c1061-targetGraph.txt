@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-Modern Snake in Modern Snake, no dependencies

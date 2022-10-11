@@ -56,3 +56,8 @@ xcuserdata/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/xcode,c++
+Build/Intermediates.noindex/.DS_Store
+Build/Intermediates.noindex/.DS_Store
+Build/Intermediates.noindex/Modern Snake.build/.DS_Store
+Build/Intermediates.noindex/Modern Snake.build/Debug/.DS_Store
+Build/Intermediates.noindex/Modern Snake.build/Debug/Modern Snake.build/.DS_Store

@@ -14,6 +14,7 @@
 #include <vector>
 #include "common.hpp"
 #include <array>
+#include <set>
 
 class Food;
 class Snake;
@@ -24,12 +25,12 @@ public:
 	~Screen();
 	void clear_screen();
 	void close_screen();
-	int menu_selection();
+	int menu_selection(const std::set<int, std::greater<int>>& highScores);
 	void clear_all();
 	
 private:
 	WINDOW* win;
-	void draw_menu(int item);
+	void draw_menu(int item, const std::set<int, std::greater<int>>& highScores);
 	
 };
 
